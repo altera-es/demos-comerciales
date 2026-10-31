@@ -803,7 +803,7 @@
           <div class="p-3.5 mb-6 rounded-2xl bg-brand-blue/10 border border-brand-blue/30 text-xs text-slate-300 flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="text-brand-blueAccent font-bold text-sm">💼 Panel Exclusivo para el Asesor de Izon:</span>
-              <span>Esta búsqueda conecta en directo con la API de Idealista para tasar inmuebles y estudiar testigos de mercado.</span>
+              <span>Esta búsqueda conecta con la API de Idealista para tasar inmuebles y estudiar testigos de mercado (en la versión pública se muestran testigos de ejemplo; el modo en vivo se activa en local).</span>
             </div>
             <span class="px-2 py-0.5 rounded bg-brand-emerald/20 text-brand-emerald text-[10px] font-bold">API Conectada</span>
           </div>
@@ -1548,7 +1548,7 @@
 
   <!-- ================= SCRIPTS INTERACTIVOS ================= -->
   <script>
-    const RAPIDAPI_KEY = "350e9fe98cmshffb3d841c773c02p1f94b9jsnb998be962c89";
+    // La clave de RapidAPI NO va en el código público: se lee de localStorage (solo en local, vía scripts/dev-server.mjs + .env)
     const RAPIDAPI_HOST = "idealista17.p.rapidapi.com";
 
     // --- BASE DE DATOS REAL DE INMUEBLES DE IZON CONSULTING (SCRAPED DIRECTAMENTE DE SU WEB) ---
@@ -2201,10 +2201,16 @@
       if (statusMsg) statusMsg.textContent = `Consultando Idealista para "${query}"...`;
 
       const t0 = performance.now();
+      let modoDemoSinClave = false;
 
       try {
+        // Radar en vivo DESACTIVADO en la versión pública (GitHub Pages): no hay clave en el HTML.
+        // Solo se activa en localhost, con la clave que scripts/dev-server.mjs copia del .env a localStorage.
+        const esLocal = ['localhost', '127.0.0.1'].includes(location.hostname);
+        const rapidApiKey = esLocal ? (localStorage.getItem('rapidapi_key') || '') : '';
+        if (!rapidApiKey) { modoDemoSinClave = true; throw new Error('Radar en vivo desactivado (sin clave en la versión pública)'); }
         const headers = {
-          "x-rapidapi-key": RAPIDAPI_KEY,
+          "x-rapidapi-key": rapidApiKey,
           "x-rapidapi-host": RAPIDAPI_HOST
         };
 
@@ -2274,7 +2280,9 @@
         console.warn("Fallo o límite en búsqueda en vivo:", err);
         const t1 = performance.now();
         if (latencySpan) latencySpan.textContent = `${Math.round(t1 - t0)} ms`;
-        if (statusMsg) statusMsg.innerHTML = `<span class="text-brand-amber font-bold">Aviso API:</span> Mostrando testigos contrastados de Albacete.`;
+        if (statusMsg) statusMsg.innerHTML = modoDemoSinClave
+          ? `<span class="text-brand-amber font-bold">Modo demostración:</span> el radar en vivo está desactivado en la versión pública. Mostrando testigos contrastados de Albacete.`
+          : `<span class="text-brand-amber font-bold">Aviso API:</span> Mostrando testigos contrastados de Albacete.`;
         renderizarResultadosBuscadorLive(CARTERA_IZON.slice(0, resultCount));
       } finally {
         if (spinner) spinner.classList.add('hidden');
