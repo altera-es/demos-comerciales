@@ -63,5 +63,5 @@
 ---
 
 ## 🌐 Enlaces Demostrativos en Vivo
-* **Prototipo Interactivo:** [https://devai82.github.io/demos-comerciales/sonrisastar/](https://devai82.github.io/demos-comerciales/sonrisastar/)
-* **Propuesta Completa:** [https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.html](https://devai82.github.io/demos-comerciales/sonrisastar/propuesta.html)
+* **Prototipo Interactivo:** [https://demos.altera-es.com/demos-comerciales/sonrisastar/](https://demos.altera-es.com/demos-comerciales/sonrisastar/)
+* **Propuesta Completa:** [https://demos.altera-es.com/demos-comerciales/sonrisastar/propuesta.html](https://demos.altera-es.com/demos-comerciales/sonrisastar/propuesta.html)

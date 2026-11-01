@@ -3,7 +3,7 @@
 Repositorio central con todas las demostraciones interactivas de **Altera Soluciones Tecnológicas** para prospección comercial en Albacete y Castilla-La Mancha (subvencionadas al 80% con el Bono Crecimiento Pyme JCCM).
 
 ## 🌐 Portal Central en Vivo
-👉 **https://devai82.github.io/demos-comerciales/**
+👉 **https://demos.altera-es.com/demos-comerciales/**
 
 ---
 
@@ -11,19 +11,19 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 
 | Cliente | Nicho | URL Directa | Puntos Fuertes |
 | :--- | :--- | :--- | :--- |
-| **Vibra Burger** | Hostelería | [devai82.github.io/demos-comerciales/vibra/](https://devai82.github.io/demos-comerciales/vibra/) | Bot WhatsApp, KDS Plancha, Voz IA Dino (ElevenLabs), Sin cuotas Last.app |
-| **Pizzería Ángela** | Hostelería ⭐ referencia | [devai82.github.io/demos-comerciales/pizzeria-angela/](https://devai82.github.io/demos-comerciales/pizzeria-angela/) | Bot WhatsApp + Stripe, KDS Cocina, Voz IA Ángela, Ahorro 30% Uber |
-| **Ruautos** | Motor ⭐ referencia | [devai82.github.io/demos-comerciales/ruautos/](https://devai82.github.io/demos-comerciales/ruautos/) | Recepcionista 24/7 ElevenLabs, WhatsApp Zernio, CRM Certificado 82 Puntos |
-| **Motor Gas Bike** | Motor | [devai82.github.io/demos-comerciales/motos/](https://devai82.github.io/demos-comerciales/motos/) | Citas de taller automáticas, Showroom de motos, WhatsApp multicanal |
-| **Ecologic Car Wash** | Lavado de coches · cadena de 35 centros | [devai82.github.io/demos-comerciales/ecologic/](https://devai82.github.io/demos-comerciales/ecologic/) | Reserva por centro con huecos reales por box, WhatsApp IA, recepcionista de voz 24/7, Stripe anti no-show, CRM central |
-| **Izon Consulting** | Inmobiliaria ⭐ referencia | [devai82.github.io/demos-comerciales/realestate/](https://devai82.github.io/demos-comerciales/realestate/) | Radar de Mercado Idealista €/m², Chatbot 24/7, Cualificación de compradores |
-| **Salón 224** | Belleza ⭐ referencia | [devai82.github.io/demos-comerciales/salon224/](https://devai82.github.io/demos-comerciales/salon224/) | Laura con el salón cerrado (ElevenLabs), WhatsApp con tarjeta de garantía y avisos, app propia: agenda, caja, fichaje y reseñas |
-| **Clínica Sonrisastar** | Salud ⭐ referencia | [devai82.github.io/demos-comerciales/sonrisastar/](https://devai82.github.io/demos-comerciales/sonrisastar/) | Recepción IA 24/7 (ElevenLabs), Agendamiento citas, Nueva Web, CRM |
-| **Fisioterapia Online con Adela** | Salud | [devai82.github.io/demos-comerciales/adela-fisio/](https://devai82.github.io/demos-comerciales/adela-fisio/) | Historial clínico, rutinas en vídeo con voz en off, pagos Bizum/tarjeta y reserva |
-| **El Sueño del Quesero** | Tienda gourmet | [devai82.github.io/demos-comerciales/quesero/](https://devai82.github.io/demos-comerciales/quesero/) | Reserva y recoge, WhatsApp 24/7 con fotos, Instagram Zernio, CRM para recuperar clientes |
-| **Bakra Nails Salon** | Belleza (uñas) | [devai82.github.io/demos-comerciales/bakra/](https://devai82.github.io/demos-comerciales/bakra/) | Laura en directo (ElevenLabs), WhatsApp e Instagram con aviso de relleno, agenda propia inspirada en Fresha |
-| **FitFusionPro** | Entrenamiento | [devai82.github.io/demos-comerciales/fitfusion/](https://devai82.github.io/demos-comerciales/fitfusion/) | Cuestionario con plan recomendado, prueba gratis sin tarjeta, app del entrenador con vídeo de cada ejercicio |
-| **Andor Seguridad** | Seguridad privada ⭐ insignia | [devai82.github.io/demos-comerciales/andor/](https://devai82.github.io/demos-comerciales/andor/) | Cuadrante de vigilantes con huecos y sustitutos, informe de cobertura, fichaje y rondas, CRM de presupuestos y partes, recepción 24/7 |
+| **Vibra Burger** | Hostelería | [demos.altera-es.com/demos-comerciales/vibra/](https://demos.altera-es.com/demos-comerciales/vibra/) | Bot WhatsApp, KDS Plancha, Voz IA Dino (ElevenLabs), Sin cuotas Last.app |
+| **Pizzería Ángela** | Hostelería ⭐ referencia | [demos.altera-es.com/demos-comerciales/pizzeria-angela/](https://demos.altera-es.com/demos-comerciales/pizzeria-angela/) | Bot WhatsApp + Stripe, KDS Cocina, Voz IA Ángela, Ahorro 30% Uber |
+| **Ruautos** | Motor ⭐ referencia | [demos.altera-es.com/demos-comerciales/ruautos/](https://demos.altera-es.com/demos-comerciales/ruautos/) | Recepcionista 24/7 ElevenLabs, WhatsApp Zernio, CRM Certificado 82 Puntos |
+| **Motor Gas Bike** | Motor | [demos.altera-es.com/demos-comerciales/motos/](https://demos.altera-es.com/demos-comerciales/motos/) | Citas de taller automáticas, Showroom de motos, WhatsApp multicanal |
+| **Ecologic Car Wash** | Lavado de coches · cadena de 35 centros | [demos.altera-es.com/demos-comerciales/ecologic/](https://demos.altera-es.com/demos-comerciales/ecologic/) | Reserva por centro con huecos reales por box, WhatsApp IA, recepcionista de voz 24/7, Stripe anti no-show, CRM central |
+| **Izon Consulting** | Inmobiliaria ⭐ referencia | [demos.altera-es.com/demos-comerciales/realestate/](https://demos.altera-es.com/demos-comerciales/realestate/) | Radar de Mercado Idealista €/m², Chatbot 24/7, Cualificación de compradores |
+| **Salón 224** | Belleza ⭐ referencia | [demos.altera-es.com/demos-comerciales/salon224/](https://demos.altera-es.com/demos-comerciales/salon224/) | Laura con el salón cerrado (ElevenLabs), WhatsApp con tarjeta de garantía y avisos, app propia: agenda, caja, fichaje y reseñas |
+| **Clínica Sonrisastar** | Salud ⭐ referencia | [demos.altera-es.com/demos-comerciales/sonrisastar/](https://demos.altera-es.com/demos-comerciales/sonrisastar/) | Recepción IA 24/7 (ElevenLabs), Agendamiento citas, Nueva Web, CRM |
+| **Fisioterapia Online con Adela** | Salud | [demos.altera-es.com/demos-comerciales/adela-fisio/](https://demos.altera-es.com/demos-comerciales/adela-fisio/) | Historial clínico, rutinas en vídeo con voz en off, pagos Bizum/tarjeta y reserva |
+| **El Sueño del Quesero** | Tienda gourmet | [demos.altera-es.com/demos-comerciales/quesero/](https://demos.altera-es.com/demos-comerciales/quesero/) | Reserva y recoge, WhatsApp 24/7 con fotos, Instagram Zernio, CRM para recuperar clientes |
+| **Bakra Nails Salon** | Belleza (uñas) | [demos.altera-es.com/demos-comerciales/bakra/](https://demos.altera-es.com/demos-comerciales/bakra/) | Laura en directo (ElevenLabs), WhatsApp e Instagram con aviso de relleno, agenda propia inspirada en Fresha |
+| **FitFusionPro** | Entrenamiento | [demos.altera-es.com/demos-comerciales/fitfusion/](https://demos.altera-es.com/demos-comerciales/fitfusion/) | Cuestionario con plan recomendado, prueba gratis sin tarjeta, app del entrenador con vídeo de cada ejercicio |
+| **Andor Seguridad** | Seguridad privada ⭐ insignia | [demos.altera-es.com/demos-comerciales/andor/](https://demos.altera-es.com/demos-comerciales/andor/) | Cuadrante de vigilantes con huecos y sustitutos, informe de cobertura, fichaje y rondas, CRM de presupuestos y partes, recepción 24/7 |
 
 📋 Antes de enseñar una demo, revisa [`docs/AUDITORIA.md`](docs/AUDITORIA.md) (fallos corregidos y pendientes de decisión).
 

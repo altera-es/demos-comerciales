@@ -3,7 +3,7 @@
 
 > **Cliente:** Izon Consulting (Marqués de Villores, Albacete)  
 > **Desarrollador Tecnológico:** Altera Soluciones Tecnológicas (Albacete)  
-> **Demo Interactiva en Vivo:** [https://devai82.github.io/demos-comerciales/realestate/](https://devai82.github.io/demos-comerciales/realestate/)  
+> **Demo Interactiva en Vivo:** [https://demos.altera-es.com/demos-comerciales/realestate/](https://demos.altera-es.com/demos-comerciales/realestate/)  
 > **Versión:** 2.0 (Motor GoHighLevel + Radar Idealista en Tiempo Real + ElevenLabs)
 
 ---
