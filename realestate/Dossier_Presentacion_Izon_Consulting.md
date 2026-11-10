@@ -1,7 +1,7 @@
 # 🏢 Dossier de Presentación Estratégica: Izon Consulting × Altera OS
 ## Motor Inmobiliario de Automatización Avanzada (Arquitectura GoHighLevel) & Radar Idealista
 
-> **Cliente:** Izon Consulting (Marqués de Villores, Albacete)  
+> **Cliente:** Izon Consulting (C/ Pedro Martínez Gutiérrez 13, Albacete)  
 > **Desarrollador Tecnológico:** Altera Soluciones Tecnológicas (Albacete)  
 > **Demo Interactiva en Vivo:** [https://demos.altera-es.com/demos-comerciales/realestate/](https://demos.altera-es.com/demos-comerciales/realestate/)  
 > **Versión:** 2.0 (Motor GoHighLevel + Radar Idealista en Tiempo Real + ElevenLabs)
@@ -95,7 +95,7 @@ El panel de gestión Altera OS incluye dos embudos diferenciados:
 ### B. Pipeline de Captación de Propietarios (Exclusivas)
 1. **Propietario Contactado:** Entrada por campaña de valoración o llamada telefónica.
 2. **Informe Idealista Generado:** Estudio comparativo de €/m² en Albacete.
-3. **Cita de Captación:** Reunión presencial en la oficina de Marqués de Villores.
+3. **Cita de Captación:** Reunión presencial en la oficina de Pedro Martínez Gutiérrez.
 4. **Exclusiva Firmada (12 Meses):** Publicación en web y lanzamiento al mercado con ventaja de precio.
 
 ---
