@@ -13,11 +13,9 @@ Repositorio central con todas las demostraciones interactivas de **Altera Soluci
 | :--- | :--- | :--- | :--- |
 | **Vibra Burger** | Hostelería | [demos.altera-es.com/demos-comerciales/vibra/](https://demos.altera-es.com/demos-comerciales/vibra/) | Bot WhatsApp, KDS Plancha, Voz IA Dino (ElevenLabs), Sin cuotas Last.app |
 | **Pizzería Ángela** | Hostelería ⭐ referencia | [demos.altera-es.com/demos-comerciales/pizzeria-angela/](https://demos.altera-es.com/demos-comerciales/pizzeria-angela/) | Bot WhatsApp + Stripe, KDS Cocina, Voz IA Ángela, Ahorro 30% Uber |
-| **Ruautos** | Motor ⭐ referencia | [demos.altera-es.com/demos-comerciales/ruautos/](https://demos.altera-es.com/demos-comerciales/ruautos/) | Recepcionista 24/7 ElevenLabs, WhatsApp Zernio, CRM Certificado 82 Puntos |
 | **Motor Gas Bike** | Motor | [demos.altera-es.com/demos-comerciales/motos/](https://demos.altera-es.com/demos-comerciales/motos/) | Citas de taller automáticas, Showroom de motos, WhatsApp multicanal |
 | **Ecologic Car Wash** | Lavado de coches · cadena de 35 centros | [demos.altera-es.com/demos-comerciales/ecologic/](https://demos.altera-es.com/demos-comerciales/ecologic/) | Reserva por centro con huecos reales por box, WhatsApp IA, recepcionista de voz 24/7, Stripe anti no-show, CRM central |
 | **Izon Consulting** | Inmobiliaria ⭐ referencia | [demos.altera-es.com/demos-comerciales/realestate/](https://demos.altera-es.com/demos-comerciales/realestate/) | Radar de Mercado Idealista €/m², Chatbot 24/7, Cualificación de compradores |
-| **Salón 224** | Belleza ⭐ referencia | [demos.altera-es.com/demos-comerciales/salon224/](https://demos.altera-es.com/demos-comerciales/salon224/) | Laura con el salón cerrado (ElevenLabs), WhatsApp con tarjeta de garantía y avisos, app propia: agenda, caja, fichaje y reseñas |
 | **Clínica Sonrisastar** | Salud ⭐ referencia | [demos.altera-es.com/demos-comerciales/sonrisastar/](https://demos.altera-es.com/demos-comerciales/sonrisastar/) | Recepción IA 24/7 (ElevenLabs), Agendamiento citas, Nueva Web, CRM |
 | **El Sueño del Quesero** | Tienda gourmet | [demos.altera-es.com/demos-comerciales/quesero/](https://demos.altera-es.com/demos-comerciales/quesero/) | Reserva y recoge, WhatsApp 24/7 con fotos, Instagram Zernio, CRM para recuperar clientes |
 | **Bakra Nails Salon** | Belleza (uñas) | [demos.altera-es.com/demos-comerciales/bakra/](https://demos.altera-es.com/demos-comerciales/bakra/) | Laura en directo (ElevenLabs), WhatsApp e Instagram con aviso de relleno, agenda propia inspirada en Fresha |
@@ -92,6 +90,8 @@ node scripts/nueva-demo.mjs init hosteleria pizzeria-luigi
 node scripts/nueva-demo.mjs build pizzeria-luigi
 node scripts/voices.mjs generate pizzeria-luigi
 ```
+
+Las demos de referencia de los nichos de motor y de belleza se retiraron de este repositorio público el 13/11/2026 (trabajos sin terminar, guardados en repositorios privados). Para crear una demo nueva de esos nichos hay que recuperar antes su referencia.
 
 El script copia la demo de referencia del nicho, sustituye los datos del cliente y avisa de lo que falta (imágenes, textos sin sustituir). **Revisa siempre a mano** carta/servicios, precios y nombres antes de enviarla. Para un nicho nuevo, añade su entrada en `nichos/nichos.json` apuntando a la demo que sirva de plantilla.
 

@@ -1,6 +1,6 @@
 # Auditoría de las 8 demos comerciales · Altera
 
-Fecha: 13/10/2026 · Alcance: portal + Vibra, Pizzería Ángela, Ruautos, Motor Gas Bike, Izon (realestate), Salón 224, Sonrisastar, Adela Fisio.
+Fecha: 13/10/2026 · Alcance: portal + Vibra, Pizzería Ángela, la demo de concesionario, Motor Gas Bike, Izon (realestate), la demo de peluquería, Sonrisastar, Adela Fisio.
 Método: lectura completa del código, chequeo estático de enlaces/IDs, sintaxis JS y pruebas automáticas en Chromium con viewport de iPhone (390×844).
 
 Leyenda: ✅ corregido en esta rama · ⚠️ pendiente (decisión tuya o dato que no puedo verificar)
@@ -13,7 +13,7 @@ Leyenda: ✅ corregido en esta rama · ⚠️ pendiente (decisión tuya o dato q
 |---|---|---|---|
 | C1 | **API key de RapidAPI (Idealista) escrita en el código público.** Cualquiera podía copiarla y gastar tu cuota. | `realestate/index.html`, `realestate/propuesta.html` | ✅ Quitada del código (ahora va en `.env`). ⚠️ **Sigue en el historial de git: revócala y crea otra en RapidAPI hoy mismo.** |
 | C2 | **La pestaña "6. Ayuda JCCM 80% (600€)" se quedaba en blanco.** El botón buscaba `#view-jccm` y la sección se llamaba `#jccm`. Era justo la pestaña del precio. | Vibra, Pizzería Ángela | ✅ |
-| C3 | **El cliente oía la voz robótica del móvil, no ElevenLabs.** La voz "real" solo sonaba si había una API key en `localStorage`; en Ruautos, Motos, Salón, Izon y Sonrisastar ni siquiera había forma de ponerla. En iPhone, las frases encadenadas tras un `await` además se bloquean por la política de autoplay. | Las 8 | ✅ Nuevo motor `shared/altera-voice.js`: MP3 pregenerados + un `<audio>` desbloqueado en el primer toque. ⚠️ **Falta generar los MP3** (`node scripts/voices.mjs generate all`, ~15.000 caracteres). |
+| C3 | **El cliente oía la voz robótica del móvil, no ElevenLabs.** La voz "real" solo sonaba si había una API key en `localStorage`; en la demo de concesionario, Motos, Peluquería, Izon y Sonrisastar ni siquiera había forma de ponerla. En iPhone, las frases encadenadas tras un `await` además se bloquean por la política de autoplay. | Las 8 | ✅ Nuevo motor `shared/altera-voice.js`: MP3 pregenerados + un `<audio>` desbloqueado en el primer toque. ⚠️ **Falta generar los MP3** (`node scripts/voices.mjs generate all`, ~15.000 caracteres). |
 | C4 | **Notas internas visibles al cliente:** "Nota para la venta: este prototipo usa el sintetizador de tu navegador…", botones "Configurar API Key" y, en Adela, el aviso parpadeante "⚠️ Activar Voz Sofía / Clave no configurada". | Vibra, Ángela, Adela | ✅ Solo se ven en `localhost` o con `?dev` |
 | C5 | **Sonrisastar cortaba cada frase de la IA a los 3,8 s** (el diálogo avanzaba con un temporizador fijo y cancelaba el audio en curso). | Sonrisastar | ✅ El siguiente turno empieza al acabar el audio |
 | C6 | **Botones "Descargar PDF Oficial / Word" (Formulario III) daban 404**, igual que "Volver a la Presentación" (`/dental`). | Sonrisastar (demo + propuesta) | ✅ Sustituidos por un sello "Memoria Formulario III incluida". ⚠️ Si tienes el PDF, súbelo y vuelvo a poner el botón. |
@@ -25,19 +25,19 @@ Leyenda: ✅ corregido en esta rama · ⚠️ pendiente (decisión tuya o dato q
 
 | # | Problema | Dónde | Estado |
 |---|---|---|---|
-| M1 | **Al colgar, la IA seguía hablando** y volvían a salir las opciones del cliente (el callback del audio seguía la conversación). En Salón el audio ElevenLabs no se paraba y la llamada nunca terminaba tras confirmar la cita. | Ruautos, Motos, Salón | ✅ Token de sesión + parada del audio |
+| M1 | **Al colgar, la IA seguía hablando** y volvían a salir las opciones del cliente (el callback del audio seguía la conversación). En Peluquería el audio ElevenLabs no se paraba y la llamada nunca terminaba tras confirmar la cita. | la demo de concesionario, Motos, Peluquería | ✅ Token de sesión + parada del audio |
 | M2 | Pulsar una "pregunta rápida" durante la llamada completa podía **reanudar la llamada anterior** encima (estado colgado). | Vibra, Ángela | ✅ |
 | M3 | KDS: contadores falsos al cargar ("4 pedidos" con 5 tickets), "Simular pedido" no actualizaba contadores (Vibra), IDs aleatorios que podían repetirse, al mover un ticket el ticket 80mm pasaba a decir "Cliente: Cliente · TOTAL: Total", el #202/#106 duplicaba botones al retroceder, "Imprimir" imprimía toda la página. | Vibra, Ángela | ✅ |
 | M4 | Chat WhatsApp: no hacía scroll al último mensaje (en móvil parecía que el botón no hacía nada), Enter no enviaba, "Repetir pedido" y "Pagar" se podían pulsar varias veces, el texto del usuario se insertaba como HTML. | Vibra, Ángela | ✅ |
 | M5 | 4 de 6 tarjetas de tratamiento abrían la cita con el tratamiento equivocado (Blanqueamiento, Limpieza, Urgencia, Prótesis). | Sonrisastar | ✅ |
 | M6 | Adela aceptaba la API key por URL (`?key=sk_...`): si alguien la enviaba por WhatsApp, quedaba en historiales y previsualizaciones. | Adela | ✅ Eliminado |
-| M7 | Enlaces rotos entre demo y propuesta (`VER_PRESENTACION_*.html`, `mockup_interactivo_*.html`) y descargas de `.md`/`.excalidraw` que no existen. | Ruautos, Motos, Salón, Sonrisastar | ✅ |
+| M7 | Enlaces rotos entre demo y propuesta (`VER_PRESENTACION_*.html`, `mockup_interactivo_*.html`) y descargas de `.md`/`.excalidraw` que no existen. | la demo de concesionario, Motos, Peluquería, Sonrisastar | ✅ |
 | M8 | **Ninguna demo tenía un botón para contactar con Altera.** El dueño dice "lo quiero"… y no tiene dónde pulsar. | Las 8 | ✅ Botón flotante "Lo quiero en mi negocio · 600 € con la ayuda JCCM" → WhatsApp. ⚠️ Pon tu número en `shared/altera-config.js`. |
-| M9 | **Datos inventados en boca del negocio** que el dueño detecta al instante: "bases sin gluten certificadas en área aislada" (Ángela), "vaca rubia gallega madurada 40 días" y "Vibra Plant Smash" (Vibra), "4.9★ reseñas verificadas", "36 meses sin intereses", "doctor de guardia 24/7" con horario L-V (Sonrisastar), "garantía 1 año + 82 puntos" (Ruautos), "único salón con ABC" (Salón), "concesionario oficial KTM" (Motos). Alérgenos y salud además tienen riesgo legal. | Varias | ⚠️ Confirmar con datos reales o redactar en genérico ("…si tu carta incluye opciones sin gluten") |
+| M9 | **Datos inventados en boca del negocio** que el dueño detecta al instante: "bases sin gluten certificadas en área aislada" (Ángela), "vaca rubia gallega madurada 40 días" y "Vibra Plant Smash" (Vibra), "4.9★ reseñas verificadas", "36 meses sin intereses", "doctor de guardia 24/7" con horario L-V (Sonrisastar), "garantía 1 año + 82 puntos" (la demo de concesionario), "único salón con ABC" (Peluquería), "concesionario oficial KTM" (Motos). Alérgenos y salud además tienen riesgo legal. | Varias | ⚠️ Confirmar con datos reales o redactar en genérico ("…si tu carta incluye opciones sin gluten") |
 | M10 | Afirmaciones legales sin fuente en la demo: "Orden 116/2026", "Trámite 1023976", "9.000.000 € de dotación", "Art. 9.4 contrato menor sin 3 ofertas" (la Ley 9/2017 es de contratación pública, no de beneficiarios privados). | Vibra, Ángela, Sonrisastar | ⚠️ Verificar contra DOCM/bases y enlazar la convocatoria oficial |
 | M11 | "Stripe / Bizum" y "0 % comisiones": Stripe cobra comisión por pago y Bizum normalmente va por TPV bancario/Redsys, no por Stripe. | Vibra, Ángela | ⚠️ Matizar ("0 % comisión de plataforma; la pasarela cobra ~1,5 %") |
 | M12 | "Triaje médico" hecho por IA. | Sonrisastar | ⚠️ Mejor "clasifica la urgencia y avisa al equipo" |
-| M13 | Las 4 demos nuevas (Ruautos, Motos, Izon, Salón) **no muestran la oferta 600 € / 99 €/mes dentro de la demo** (solo en el portal). | 4 demos | ⚠️ (el botón flotante ya la muestra) |
+| M13 | Las 4 demos nuevas (la demo de concesionario, Motos, Izon, Peluquería) **no muestran la oferta 600 € / 99 €/mes dentro de la demo** (solo en el portal). | 4 demos | ⚠️ (el botón flotante ya la muestra) |
 | M14 | Tailwind por CDN en tiempo de ejecución: ~300 KB de JS, parpadeo sin estilos en 4G y aviso en consola "no usar en producción". | Las 8 | ⚠️ Compilar CSS con Tailwind CLI cuando estabilicéis el diseño |
 
 ## 🟡 MENOR

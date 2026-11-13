@@ -1,6 +1,6 @@
 # Eco · Agente de voz en directo de Ecologic Car Wash (ElevenLabs)
 
-Creado el 20/10/2026 duplicando a Laura de Salón 224 (`docs/agentes/laura-motos-izon.md`), así hereda la misma voz y la
+Creado el 20/10/2026 duplicando a Laura de otra demo (`docs/agentes/laura-motos-izon.md`), así hereda la misma voz y la
 misma configuración de seguridad.
 
 | Demo | Agente | agent_id |

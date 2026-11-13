@@ -23,8 +23,8 @@ const TYPES = {
 
 // Claves de localStorage que ya leen las demos
 const LOCAL_VOICE_KEYS = {
-  sonrisastar: 'elevenlabs_voice_id_dental', motos: 'elevenlabs_voice_id_motorgas', ruautos: 'elevenlabs_voice_id_ruautos',
-  salon224: 'elevenlabs_voice_id_salon', realestate: 'elevenlabs_voice_id_realestate', 'adela-fisio': 'elevenlabs_voice_id_fisio'
+  sonrisastar: 'elevenlabs_voice_id_dental', motos: 'elevenlabs_voice_id_motorgas',
+  realestate: 'elevenlabs_voice_id_realestate', 'adela-fisio': 'elevenlabs_voice_id_fisio'
 };
 
 function devConfig() {
