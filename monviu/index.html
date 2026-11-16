@@ -38,7 +38,7 @@ header.top .wrap { height: 64px; display: flex; align-items: center; justify-con
 section.bloque { padding: 52px 0; border-top: 1px solid var(--linea); scroll-margin-top: 64px; }
 .bloque h2 { font-size: 36px; }
 .bloque .sub { margin-top: 8px; color: var(--texto-2); max-width: 46em; }
-.rejilla { margin-top: 26px; display: grid; grid-template-columns: 1fr 420px; gap: 36px; align-items: start; }
+.rejilla { margin-top: 26px; display: grid; grid-template-columns: 1fr 340px; gap: 36px; align-items: start; }
 /* chat */
 .escenarios { display: grid; gap: 10px; }
 .esc { text-align: left; background: var(--papel); border: 1px solid var(--linea); border-radius: 12px; padding: 14px 16px; cursor: pointer; font: inherit; color: inherit; }
@@ -47,8 +47,11 @@ section.bloque { padding: 52px 0; border-top: 1px solid var(--linea); scroll-mar
 .esc[aria-pressed="true"] { border-color: var(--mv-naranja); background: var(--mv-naranja-s); }
 .nota { margin-top: 14px; padding: 12px 14px; background: var(--oliva-s); border-radius: 10px; font-size: 14.5px; color: var(--texto-2); }
 .nota b { color: var(--oliva); }
-.movil { background: var(--texto); border-radius: 36px; padding: 9px; box-shadow: 0 18px 40px -14px rgba(35,29,22,.3); }
-.pantalla { background: var(--wa); border-radius: 28px; overflow: hidden; height: 600px; display: flex; flex-direction: column; }
+.movil { width: 320px; max-width: 100%; justify-self: center; background: #1B1712; border-radius: 48px; padding: 11px; box-shadow: 0 0 0 2px #3A332A inset, 0 22px 44px -16px rgba(35,29,22,.38); position: relative; }
+.movil::after { content: ""; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 92px; height: 26px; border-radius: 14px; background: #000; z-index: 3; }
+.estado { height: 44px; flex: none; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 26px 6px; background: var(--mv-verde); color: #fff; font: 600 13px/1 "Instrument", sans-serif; }
+.estado i { font-style: normal; letter-spacing: 1px; font-size: 11px; }
+.pantalla { background: var(--wa); border-radius: 38px; overflow: hidden; height: 640px; aspect-ratio: auto; display: flex; flex-direction: column; }
 .cab-wa { background: var(--mv-verde); color: #fff; padding: 14px 16px; display: flex; gap: 10px; align-items: center; }
 .cab-wa .av { width: 36px; height: 36px; border-radius: 50%; background: #fff; display: grid; place-items: center; overflow: hidden; }
 .cab-wa .av img { width: 28px; height: auto; }
@@ -98,6 +101,16 @@ section.bloque { padding: 52px 0; border-top: 1px solid var(--linea); scroll-mar
 .av-item .acc { margin-top: 8px; display: flex; gap: 6px; }
 .av-item .acc button { font: 600 12.5px/1 "Instrument", sans-serif; padding: 7px 10px; border-radius: 7px; border: 1px solid var(--linea-2); background: var(--papel); cursor: pointer; }
 .av-item .acc button.si { background: var(--ambar); border-color: var(--ambar); }
+.ptabs { display: flex; gap: 4px; padding: 8px 12px 0; background: var(--hundido); border-bottom: 1px solid var(--linea); overflow-x: auto; }
+.ptabs button { font: 600 14px/1 "Instrument", sans-serif; padding: 10px 14px; border: 0; border-radius: 8px 8px 0 0; background: transparent; color: var(--texto-2); cursor: pointer; white-space: nowrap; }
+.ptabs button[aria-selected="true"] { background: var(--papel); color: var(--texto); box-shadow: inset 0 3px 0 var(--mv-naranja); }
+.vista[hidden] { display: none !important; }
+.lista-p { padding: 8px 18px 14px; }
+.lista-p .fila { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--linea); font-size: 14.5px; }
+.lista-p .fila small { display: block; color: var(--texto-2); font-size: 13px; }
+.lista-p .fila button, .av-item .acc button { font: 600 12.5px/1 "Instrument", sans-serif; padding: 8px 11px; border-radius: 7px; border: 1px solid var(--linea-2); background: var(--papel); cursor: pointer; }
+.lista-p .fila button.si { background: var(--ambar); border-color: var(--ambar); }
+.hecho { color: var(--oliva); font-weight: 600; font-size: 13px; }
 .pie-panel { padding: 10px 18px; font-size: 12.5px; color: var(--texto-2); border-top: 1px solid var(--linea); }
 .cierre { padding: 56px 0 120px; border-top: 1px solid var(--linea); }
 .cierre .caja { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 28px; background: var(--hundido); border: 0; }
@@ -131,7 +144,7 @@ section.bloque { padding: 52px 0; border-top: 1px solid var(--linea); scroll-mar
 .flot svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 @media (max-width: 900px) { .webmock .hueco { right: 22px; } .webmock .lienzo { height: 460px; } }
 @media (max-width: 900px) {
-  .tabs { display: none; } .heroe h1 { font-size: 38px; }
+  .tabs { display: none; } header.top .btn { height: 38px; padding: 0 12px; font-size: 14px; } .para img { height: 36px; } .bloque h2 { font-size: 30px; } .webmock .cab small { display: none; } .flot a { height: 44px; font-size: 14px; } .flot .burbuja { max-width: 240px; } .movil { width: 300px; } .pantalla { height: 600px; } .heroe h1 { font-size: 38px; }
   .rejilla, .voz, .panel .cuerpo, .cierre .caja { grid-template-columns: 1fr; }
   .panel .col { border-right: 0; border-bottom: 1px solid var(--linea); }
 }
@@ -170,6 +183,7 @@ section.bloque { padding: 52px 0; border-top: 1px solid var(--linea); scroll-mar
       <p class="nota"><b>Ejemplos guionizados.</b> En la clínica, el asistente respondería con la información y las reglas que decidáis vosotros, y os pasaría la conversación cuando hace falta una persona. El recurso de urgencias y los textos se confirman con vosotros.</p>
     </div>
     <div class="movil"><div class="pantalla">
+      <div class="estado"><span>9:41</span><i>●●● ▮</i></div>
       <div class="cab-wa"><span class="av"><img src="img/monviu-icono.png" alt=""></span><span><b>MónViu-Orriols</b><small>Asistente virtual · responde al momento</small></span></div>
       <div class="msgs" id="msgs" aria-live="polite"></div>
     </div></div>
@@ -212,8 +226,14 @@ section.bloque { padding: 52px 0; border-top: 1px solid var(--linea); scroll-mar
   <h2>Tu panel</h2>
   <p class="sub">Agenda, ficha de cada mascota y su dueño, conversaciones y avisos en un solo sitio. Lo que el asistente prepara espera vuestra aprobación.</p>
   <div class="panel">
-    <div class="barra"><b>MónViu-Orriols · hoy</b><span>3 avisos nuevos</span></div>
-    <div class="cuerpo">
+    <div class="barra"><b>MónViu-Orriols · panel</b><span id="nav">3 avisos nuevos</span></div>
+    <div class="ptabs" role="tablist">
+      <button role="tab" aria-selected="true" data-v="hoy">Hoy</button>
+      <button role="tab" aria-selected="false" data-v="conv">Conversaciones</button>
+      <button role="tab" aria-selected="false" data-v="rec">Recordatorios</button>
+      <button role="tab" aria-selected="false" data-v="ped">Domicilio y pedidos</button>
+    </div>
+    <div class="cuerpo vista" data-vista="hoy">
       <div class="col">
         <h4>Agenda de hoy</h4>
         <div class="cita"><span class="h">9:30</span><span>Coco · perro<small>Revisión anual · Andrés R.</small></span><span class="chip">Confirmada</span></div>
@@ -244,6 +264,22 @@ section.bloque { padding: 52px 0; border-top: 1px solid var(--linea); scroll-mar
         <div class="av-item"><b>2 citas propuestas y 1 pedido</b>Nala (jueves tarde), Thor y un saco de pienso a domicilio en Torrefiel.<div class="acc"><button class="si">Confirmar</button><button>Cambiar</button></div></div>
         <div class="av-item"><b>Recordatorios de la semana</b>14 avisos de vacunas y desparasitaciones preparados para que los apruebes.<div class="acc"><button class="si">Aprobar</button><button>Revisar</button></div></div>
       </div>
+    </div>
+    <div class="vista lista-p" data-vista="conv" hidden>
+      <div class="fila"><span><b>Andrés · Coco</b><small>WhatsApp 22:14 · posible urgencia, se indicó el centro colaborador</small></span><button class="si" data-ok="Llamado">Marcar llamado</button></div>
+      <div class="fila"><span><b>Marta · Nala</b><small>Llamada 10:42 · vacuna anual, prefiere jueves tarde</small></span><button class="si" data-ok="Cita confirmada">Confirmar cita</button></div>
+      <div class="fila"><span><b>Sergio · Thor</b><small>WhatsApp · consulta de comportamiento, tira de la correa</small></span><button class="si" data-ok="Cita confirmada">Confirmar cita</button></div>
+      <div class="fila"><span><b>Rosa · Luna</b><small>WhatsApp · gata nerviosa, vacuna, miércoles tarde</small></span><button class="si" data-ok="Cita confirmada">Confirmar cita</button></div>
+    </div>
+    <div class="vista lista-p" data-vista="rec" hidden>
+      <p style="padding:10px 0;color:var(--texto-2);font-size:14px">El asistente prepara los avisos con las fechas de cada ficha. No sale ninguno hasta que lo apruebas.</p>
+      <div class="fila"><span><b>Simba · desparasitación</b><small>«Hola, Lucía. Según la ficha de Simba, le toca la desparasitación este mes…»</small></span><button class="si" data-ok="Aprobado">Aprobar</button></div>
+      <div class="fila"><span><b>Coco · vacuna anual</b><small>«Hola, Andrés. A Coco le toca la vacuna anual. ¿Te proponemos un día?»</small></span><button class="si" data-ok="Aprobado">Aprobar</button></div>
+      <div class="fila"><span><b>Kira · revisión dental</b><small>«Hola. Han pasado seis meses de la limpieza dental de Kira…»</small></span><button class="si" data-ok="Aprobado">Aprobar</button></div>
+    </div>
+    <div class="vista lista-p" data-vista="ped" hidden>
+      <div class="fila"><span><b>Pienso de Coco · saco grande</b><small>Entrega en Torrefiel · pedido por WhatsApp</small></span><button class="si" data-ok="Llamado para concretar">Llamar para concretar</button></div>
+      <div class="fila"><span><b>Recogida de Coco para revisión</b><small>Torrefiel · el dueño prefiere por la mañana</small></span><button class="si" data-ok="Llamado para concretar">Llamar para concretar</button></div>
     </div>
     <div class="pie-panel">Ejemplo con datos inventados. El diseño final del panel se ajusta a cómo trabajáis en MónViu.</div>
   </div>
@@ -342,7 +378,16 @@ async function play(e) {
 document.querySelectorAll('.esc').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.esc').forEach(x => x.setAttribute('aria-pressed', x === b)); play(b.dataset.e);
 }));
+document.querySelectorAll('.esc').forEach(b => b.addEventListener('click', () => { if (innerWidth < 900) document.querySelector('#whatsapp .movil').scrollIntoView({ behavior: 'smooth', block: 'center' }); }));
 play('cita');
+document.querySelectorAll('.ptabs button').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.ptabs button').forEach(x => x.setAttribute('aria-selected', x === t));
+  document.querySelectorAll('.vista').forEach(v => v.hidden = v.dataset.vista !== t.dataset.v);
+}));
+document.querySelectorAll('.lista-p button[data-ok], .av-item .acc button.si').forEach(b => b.addEventListener('click', () => {
+  const s = document.createElement('span'); s.className = 'hecho'; s.textContent = '✓ ' + (b.dataset.ok || 'Hecho');
+  b.replaceWith(s);
+}));
 </script>
 </body>
 </html>
