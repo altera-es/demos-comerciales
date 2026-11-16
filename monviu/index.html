@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Demo Altera para Clínica Veterinària MónViu-Orriols · WhatsApp con IA y recepcionista de voz</title>
+<meta name="description" content="Demo interactiva preparada por Altera para la Clínica Veterinària MónViu-Orriols: WhatsApp con IA, recepcionista de voz y panel.">
+<script src="../shared/altera-config.js"></script>
+<script src="../shared/altera-convai.js" defer></script>
+<style>
+@font-face { font-family: "Fraunces"; src: url("fonts/FrauncesDisplay-Medium.ttf"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Instrument"; src: url("fonts/InstrumentSans-Regular.ttf"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Instrument"; src: url("fonts/InstrumentSans-SemiBold.ttf"); font-weight: 600; font-display: swap; }
+:root { --fondo:#FBF7EF; --papel:#FFFDF9; --hundido:#F4EDDF; --linea:#E6D9C1; --linea-2:#CDBD9F; --texto:#231D16; --texto-2:#665A49;
+        --ambar:#E0A33A; --ambar-t:#7F5518; --ambar-s:#F8ECD3; --oliva:#55603A; --oliva-s:#EEF0E0; --terracota:#8F4527; --terracota-s:#F7E6DD; --espresso:#15110C;
+        --wa:#E7F1EA; --wa-yo:#FFFDF9; --mv-naranja:#E58526; --mv-verde:#2E8647; --mv-verde-t:#22663A; --mv-naranja-s:#FBEBDA; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 400 16.5px/1.55 "Instrument", system-ui, sans-serif; color: var(--texto); background: var(--fondo); }
+a { color: inherit; }
+h1, h2, .serif { font-family: "Fraunces", Georgia, serif; font-weight: 500; letter-spacing: -0.02em; line-height: 1.06; }
+.aviso { background: var(--espresso); color: #E9DFCB; font-size: 14px; text-align: center; padding: 9px 16px; }
+.aviso b { color: #fff; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+header.top { border-bottom: 1px solid var(--linea); background: var(--papel); position: sticky; top: 0; z-index: 5; }
+header.top .wrap { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.marca { font: 600 18px/1 "Instrument", sans-serif; text-decoration: none; }
+.marca span { color: var(--ambar-t); }
+.tabs { display: flex; gap: 6px; }
+.tabs a { text-decoration: none; padding: 8px 14px; border-radius: 8px; font-size: 15px; color: var(--texto-2); }
+.tabs a:hover { background: var(--hundido); color: var(--texto); }
+.btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 9px; background: var(--ambar); color: var(--texto); font: 600 15.5px/1 "Instrument", sans-serif; text-decoration: none; border: 0; cursor: pointer; }
+.btn.sec { background: transparent; border: 1px solid var(--linea-2); }
+.heroe { padding: 60px 0 44px; }
+.heroe h1 { font-size: 54px; max-width: 15em; }
+.heroe p { margin-top: 16px; font-size: 19px; color: var(--texto-2); max-width: 40em; }
+.heroe .acciones { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
+section.bloque { padding: 52px 0; border-top: 1px solid var(--linea); scroll-margin-top: 64px; }
+.bloque h2 { font-size: 36px; }
+.bloque .sub { margin-top: 8px; color: var(--texto-2); max-width: 46em; }
+.rejilla { margin-top: 26px; display: grid; grid-template-columns: 1fr 420px; gap: 36px; align-items: start; }
+/* chat */
+.escenarios { display: grid; gap: 10px; }
+.esc { text-align: left; background: var(--papel); border: 1px solid var(--linea); border-radius: 12px; padding: 14px 16px; cursor: pointer; font: inherit; color: inherit; }
+.esc b { display: block; font-weight: 600; }
+.esc span { font-size: 14.5px; color: var(--texto-2); }
+.esc[aria-pressed="true"] { border-color: var(--mv-naranja); background: var(--mv-naranja-s); }
+.nota { margin-top: 14px; padding: 12px 14px; background: var(--oliva-s); border-radius: 10px; font-size: 14.5px; color: var(--texto-2); }
+.nota b { color: var(--oliva); }
+.movil { background: var(--texto); border-radius: 36px; padding: 9px; box-shadow: 0 18px 40px -14px rgba(35,29,22,.3); }
+.pantalla { background: var(--wa); border-radius: 28px; overflow: hidden; height: 600px; display: flex; flex-direction: column; }
+.cab-wa { background: var(--mv-verde); color: #fff; padding: 14px 16px; display: flex; gap: 10px; align-items: center; }
+.cab-wa .av { width: 36px; height: 36px; border-radius: 50%; background: #fff; display: grid; place-items: center; overflow: hidden; }
+.cab-wa .av img { width: 28px; height: auto; }
+.cab-wa b { display: block; font-size: 15px; }
+.cab-wa small { font-size: 12px; opacity: .85; }
+.msgs { flex: 1; overflow-y: auto; padding: 14px 12px; display: flex; flex-direction: column; gap: 8px; }
+.m { max-width: 84%; padding: 8px 11px; border-radius: 12px; font-size: 14.5px; line-height: 1.42; box-shadow: 0 1px 1px rgba(0,0,0,.06); white-space: pre-line; }
+.m.cli { align-self: flex-end; background: #D6EBDD; border-top-right-radius: 4px; }
+.m.ia { align-self: flex-start; background: var(--wa-yo); border-top-left-radius: 4px; }
+.m.sis { align-self: center; background: var(--ambar-s); color: var(--ambar-t); font-size: 12.5px; font-weight: 600; text-align: center; }
+.m.alerta { align-self: center; background: var(--terracota-s); color: var(--terracota); font-size: 12.5px; font-weight: 600; text-align: center; }
+.escribe { align-self: flex-start; font-size: 12.5px; color: var(--texto-2); padding-left: 6px; }
+/* voz */
+.voz { margin-top: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.caja { background: var(--papel); border: 1px solid var(--linea); border-radius: 16px; padding: 22px; }
+.caja h3 { font-size: 18px; }
+.caja p { margin-top: 6px; color: var(--texto-2); font-size: 15px; }
+.trans { margin-top: 12px; display: grid; gap: 8px; font-size: 15px; }
+.trans div { display: grid; grid-template-columns: 70px 1fr; gap: 10px; }
+.trans b { color: var(--ambar-t); font-weight: 600; }
+.trans div.c b { color: var(--oliva); }
+.resumen { margin-top: 14px; border-top: 1px solid var(--linea); }
+.resumen div { display: grid; grid-template-columns: 120px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--linea); font-size: 14.5px; }
+.resumen span { color: var(--texto-2); }
+.chip { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--oliva-s); color: var(--oliva); }
+.chip.r { background: var(--terracota-s); color: var(--terracota); }
+.chip.a { background: var(--ambar-s); color: var(--ambar-t); }
+.llamar { margin-top: 16px; padding: 16px; border-radius: 12px; background: var(--hundido); font-size: 15px; }
+.llamar b { font-weight: 600; }
+/* panel */
+.panel { margin-top: 26px; background: var(--papel); border: 1px solid var(--linea-2); border-radius: 16px; overflow: hidden; box-shadow: 0 16px 36px -18px rgba(35,29,22,.25); }
+.panel .barra { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: var(--hundido); border-bottom: 1px solid var(--linea); font-size: 14px; }
+.panel .barra b { font-weight: 600; }
+.panel .cuerpo { display: grid; grid-template-columns: 1.05fr 1fr 0.95fr; }
+.panel .col { padding: 18px; border-right: 1px solid var(--linea); }
+.panel .col:last-child { border-right: 0; }
+.panel h4 { font: 600 13px/1 "Instrument", sans-serif; letter-spacing: .02em; color: var(--texto-2); margin-bottom: 10px; }
+.cita { display: grid; grid-template-columns: 50px 1fr auto; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--linea); font-size: 14px; align-items: center; }
+.cita .h { font-weight: 600; }
+.cita small { display: block; color: var(--texto-2); font-size: 12.5px; }
+.ficha .nom { font: 500 24px/1 "Fraunces", serif; }
+.ficha .dat { margin-top: 10px; display: grid; grid-template-columns: 110px 1fr; gap: 6px 10px; font-size: 14px; }
+.ficha .dat span { color: var(--texto-2); }
+.ficha .hist { margin-top: 12px; border-top: 1px solid var(--linea); padding-top: 10px; font-size: 13.5px; color: var(--texto-2); display: grid; gap: 6px; }
+.av-item { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--linea); margin-bottom: 8px; font-size: 13.8px; }
+.av-item b { display: block; font-weight: 600; font-size: 14px; }
+.av-item .acc { margin-top: 8px; display: flex; gap: 6px; }
+.av-item .acc button { font: 600 12.5px/1 "Instrument", sans-serif; padding: 7px 10px; border-radius: 7px; border: 1px solid var(--linea-2); background: var(--papel); cursor: pointer; }
+.av-item .acc button.si { background: var(--ambar); border-color: var(--ambar); }
+.pie-panel { padding: 10px 18px; font-size: 12.5px; color: var(--texto-2); border-top: 1px solid var(--linea); }
+.cierre { padding: 56px 0 120px; border-top: 1px solid var(--linea); }
+.cierre .caja { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 28px; background: var(--hundido); border: 0; }
+.cierre .serif { font-size: 30px; }
+
+.para { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; font-size: 14.5px; color: var(--texto-2); }
+.para img { height: 46px; width: auto; }
+.para span { border-left: 1px solid var(--linea-2); padding-left: 14px; }
+.heroe h1 em { font-style: normal; color: var(--mv-verde-t); }
+.cita-web { margin-top: 18px; padding: 16px 18px; border-left: 4px solid var(--mv-naranja); background: var(--papel); border-radius: 0 12px 12px 0; font-size: 16px; color: var(--texto-2); max-width: 46em; }
+.cita-web q { color: var(--texto); font-style: italic; }
+.cita-web small { display: block; margin-top: 6px; font-size: 13px; }
+/* así quedaría en tu web */
+.webmock { margin-top: 26px; background: var(--papel); border: 1px solid var(--linea-2); border-radius: 14px; overflow: hidden; box-shadow: 0 16px 36px -18px rgba(35,29,22,.25); }
+.webmock .bar { height: 30px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: var(--hundido); border-bottom: 1px solid var(--linea); font-size: 12px; color: var(--texto-2); }
+.webmock .bar i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--linea-2); }
+.webmock .bar span { margin-left: 10px; background: var(--papel); border-radius: 6px; padding: 2px 10px; }
+.webmock .lienzo { position: relative; height: 380px; background: repeating-linear-gradient(180deg, #fff 0 54px, #F7F3EA 54px 55px); }
+.webmock .cab { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; background: #fff; border-bottom: 1px solid var(--linea); }
+.webmock .cab img { height: 40px; }
+.webmock .cab small { font-size: 13px; color: var(--texto-2); }
+.webmock .hueco { position: absolute; left: 22px; top: 110px; right: 360px; display: grid; gap: 12px; }
+.webmock .hueco div { height: 14px; border-radius: 7px; background: #ECE5D7; }
+.webmock .hueco p { font-size: 13.5px; color: var(--texto-2); }
+.flot { position: absolute; right: 22px; bottom: 22px; display: grid; gap: 10px; justify-items: end; }
+.flot .burbuja { background: #fff; border: 1px solid var(--linea); border-radius: 14px; padding: 12px 14px; font-size: 14px; max-width: 290px; box-shadow: 0 10px 24px -12px rgba(35,29,22,.35); }
+.flot .burbuja b { display: block; font-weight: 600; }
+.flot a { display: inline-flex; align-items: center; gap: 9px; height: 48px; padding: 0 18px; border-radius: 999px; font: 600 15px/1 "Instrument", sans-serif; text-decoration: none; color: #fff; box-shadow: 0 10px 22px -10px rgba(0,0,0,.45); }
+.flot a.wa { background: var(--mv-verde); }
+.flot a.tel { background: var(--mv-naranja); color: #231D16; }
+.flot svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 900px) { .webmock .hueco { right: 22px; } .webmock .lienzo { height: 460px; } }
+@media (max-width: 900px) {
+  .tabs { display: none; } .heroe h1 { font-size: 38px; }
+  .rejilla, .voz, .panel .cuerpo, .cierre .caja { grid-template-columns: 1fr; }
+  .panel .col { border-right: 0; border-bottom: 1px solid var(--linea); }
+}
+</style>
+</head>
+<body>
+<div class="aviso">Demo preparada por Altera para la <b>Clínica Veterinària MónViu-Orriols</b>. Las conversaciones son de ejemplo, con mascotas y dueños inventados. No es la línea real de la clínica.</div>
+<header class="top"><div class="wrap">
+  <a class="marca" href="https://www.altera-es.com">Altera <span>· demo para MónViu-Orriols</span></a>
+  <nav class="tabs"><a href="#whatsapp">WhatsApp</a><a href="#voz">Recepcionista de voz</a><a href="#panel">Tu panel</a><a href="#tu-web">En tu web</a></nav>
+  <a class="btn" href="#voz">Hablar con Laura</a>
+</div></header>
+
+<main>
+<section class="heroe"><div class="wrap">
+  <div class="para"><img src="img/monviu-logo.png" alt="Clínica Veterinària MónViu-Orriols"><span>Demo preparada por Altera para vuestra clínica</span></div>
+  <h1>MónViu atiende <em>aunque estéis en consulta.</em></h1>
+  <p>Así funcionarían el WhatsApp con IA y la recepcionista de voz en vuestra clínica de Orriols. Toca los ejemplos, habla con Laura y mira cómo llega todo al panel.</p>
+  <p class="cita-web">En vuestra web decís: <q>Si no podemos responder en el momento, te devolveremos la llamada tan pronto como sea posible.</q> La idea es que ese «en el momento» lo cubra un asistente, y que la llamada de vuelta llegue ya con los datos tomados.<small>Fuente: página de contacto de monviu.es</small></p>
+  <div class="acciones"><a class="btn" href="#whatsapp">Probar el WhatsApp</a><a class="btn sec" href="#voz">Hablar con Laura</a></div>
+</div></section>
+
+<section class="bloque" id="whatsapp"><div class="wrap">
+  <h2>WhatsApp con IA</h2>
+  <p class="sub">Contesta al momento con lo que vosotros le enseñáis: servicios, cómo llegar, cita previa, domicilio y pienso bajo pedido. No diagnostica ni da pautas médicas, y no da precios si no lo decidís vosotros.</p>
+  <div class="rejilla">
+    <div>
+      <div class="escenarios" id="escenarios">
+        <button class="esc" data-e="cita" aria-pressed="true"><b>Cita para vacunar a una gata</b><span>Toma los datos de la mascota y deja la cita previa pendiente de vuestra confirmación.</span></button>
+        <button class="esc" data-e="recordatorio"><b>Recordatorio de desparasitación</b><span>Os lo preparamos con la fecha de la ficha; sale solo cuando lo aprobáis.</span></button>
+        <button class="esc" data-e="duda"><b>«No come desde ayer, ¿qué le doy?»</b><span>No da pautas médicas: ofrece cita y avisa a la clínica.</span></button>
+        <button class="esc" data-e="urgencia"><b>Urgencia fuera de horario</b><span>Da vuestro recurso de urgencias (centro colaborador) y os avisa.</span></button>
+        <button class="esc" data-e="domicilio"><b>Pienso bajo pedido y recogida a domicilio</b><span>Toma el pedido y el barrio; la clínica llama para concretar.</span></button>
+        <button class="esc" data-e="etologia"><b>Perro que tira de la correa</b><span>Explica la consulta de comportamiento y propone cita.</span></button>
+      </div>
+      <p class="nota"><b>Ejemplos guionizados.</b> En la clínica, el asistente respondería con la información y las reglas que decidáis vosotros, y os pasaría la conversación cuando hace falta una persona. El recurso de urgencias y los textos se confirman con vosotros.</p>
+    </div>
+    <div class="movil"><div class="pantalla">
+      <div class="cab-wa"><span class="av"><img src="img/monviu-icono.png" alt=""></span><span><b>MónViu-Orriols</b><small>Asistente virtual · responde al momento</small></span></div>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+    </div></div>
+  </div>
+</div></section>
+
+<section class="bloque" id="voz"><div class="wrap">
+  <h2>Recepcionista de voz</h2>
+  <p class="sub">Cuando estáis con un animal y no podéis coger el teléfono, contesta Laura: toma los datos para la cita previa y os deja un resumen por escrito de cada llamada.</p>
+  <div class="voz">
+    <div class="caja">
+      <h3>Así suena una llamada</h3>
+      <div class="trans">
+        <div><b>Laura</b><span>Clínica Veterinària MónViu-Orriols, buenas. Te atiende Laura, la asistente virtual. ¿En qué te ayudo?</span></div>
+        <div class="c"><b>Clienta</b><span>Hola, quería cita para vacunar a mi gata, Nala.</span></div>
+        <div><b>Laura</b><span>Claro. ¿Qué edad tiene Nala y prefieres mañana o tarde?</span></div>
+        <div class="c"><b>Clienta</b><span>Tiene tres años. Mejor el jueves por la tarde.</span></div>
+        <div><b>Laura</b><span>Perfecto. Te anoto el jueves por la tarde para la vacuna de Nala. La clínica te confirma la hora por WhatsApp. Si viene en transportín, mejor tapado con una toalla: así llega más tranquila.</span></div>
+      </div>
+      <div class="llamar" data-convai-only><b>Habla con Laura ahora:</b> pulsa el botón de voz abajo a la izquierda y acepta el micrófono. Habla como lo haría MónViu, con los datos públicos de vuestra web. Llamadas de demo de 3 minutos como máximo.</div>
+      <div class="llamar" data-convai-fallback><b>Prueba la voz en nuestra línea de demostración:</b> +34 967 92 02 80. Ahí contesta como «Laura de Altera», no como MónViu: es la misma tecnología.</div>
+    </div>
+    <div class="caja">
+      <h3>Lo que te llega después</h3>
+      <p>Un resumen escrito de cada llamada, en tu panel y en tu móvil.</p>
+      <div class="resumen">
+        <div><span>Llamada</span><b>Jueves 10:42 · 1 min 20 s</b></div>
+        <div><span>Dueña</span><b>Marta G. · 6•• ••• •12</b></div>
+        <div><span>Mascota</span><b>Nala · gata, 3 años</b></div>
+        <div><span>Motivo</span><b>Vacuna anual</b></div>
+        <div><span>Prefiere</span><b>Jueves por la tarde</b></div>
+        <div><span>Estado</span><b><span class="chip a">Pendiente de confirmar</span></b></div>
+      </div>
+      <p style="margin-top:12px;font-size:13.5px">No se guarda el audio de la llamada, solo el texto. Laura dice al empezar que es una asistente virtual.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="bloque" id="panel"><div class="wrap">
+  <h2>Tu panel</h2>
+  <p class="sub">Agenda, ficha de cada mascota y su dueño, conversaciones y avisos en un solo sitio. Lo que el asistente prepara espera vuestra aprobación.</p>
+  <div class="panel">
+    <div class="barra"><b>MónViu-Orriols · hoy</b><span>3 avisos nuevos</span></div>
+    <div class="cuerpo">
+      <div class="col">
+        <h4>Agenda de hoy</h4>
+        <div class="cita"><span class="h">9:30</span><span>Coco · perro<small>Revisión anual · Andrés R.</small></span><span class="chip">Confirmada</span></div>
+        <div class="cita"><span class="h">10:15</span><span>Simba · gato<small>Vacuna trivalente · Lucía P.</small></span><span class="chip">Confirmada</span></div>
+        <div class="cita"><span class="h">11:00</span><span>Kira · perra<small>Limpieza dental · ultrasonidos</small></span><span class="chip">Confirmada</span></div>
+        <div class="cita"><span class="h">17:00</span><span>Nala · gata<small>Vacuna anual · por teléfono</small></span><span class="chip a">Propuesta</span></div>
+        <div class="cita"><span class="h">18:30</span><span>Thor · perro<small>Comportamiento · por WhatsApp</small></span><span class="chip a">Propuesta</span></div>
+      </div>
+      <div class="col ficha">
+        <h4>Ficha</h4>
+        <p class="nom">Nala</p>
+        <div class="dat">
+          <span>Especie</span><b>Gata, europea común</b>
+          <span>Edad</span><b>3 años</b>
+          <span>Dueña</span><b>Marta G.</b>
+          <span>Próximo</span><b>Vacuna anual · noviembre</b>
+          <span>Desparasitar</span><b>Cada 3 meses · próxima en enero</b>
+        </div>
+        <div class="hist">
+          <span>Llamada de hoy · pide vacuna, prefiere jueves tarde</span>
+          <span>WhatsApp · recordatorio de desparasitación aprobado y enviado</span>
+          <span>Visita anterior · revisión general</span>
+        </div>
+      </div>
+      <div class="col">
+        <h4>Avisos para ti</h4>
+        <div class="av-item" style="border-color:#EBC6B4;background:var(--terracota-s)"><b>Posible urgencia (WhatsApp, 22:14)</b>Perro que ha comido chocolate. Se le indicó el centro colaborador de urgencias.<div class="acc"><button class="si">Llamar</button><button>Visto</button></div></div>
+        <div class="av-item"><b>2 citas propuestas y 1 pedido</b>Nala (jueves tarde), Thor y un saco de pienso a domicilio en Torrefiel.<div class="acc"><button class="si">Confirmar</button><button>Cambiar</button></div></div>
+        <div class="av-item"><b>Recordatorios de la semana</b>14 avisos de vacunas y desparasitaciones preparados para que los apruebes.<div class="acc"><button class="si">Aprobar</button><button>Revisar</button></div></div>
+      </div>
+    </div>
+    <div class="pie-panel">Ejemplo con datos inventados. El diseño final del panel se ajusta a cómo trabajáis en MónViu.</div>
+  </div>
+</div></section>
+
+<section class="bloque" id="tu-web"><div class="wrap">
+  <h2>Así quedaría en vuestra web</h2>
+  <p class="sub">Vuestra web se queda como está. Solo se añaden dos botones flotantes: WhatsApp, que ya contesta el asistente, y «Habla con Laura» para quien prefiere llamar.</p>
+  <div class="webmock">
+    <div class="bar"><i></i><i></i><i></i><span>monviu.es · simulación</span></div>
+    <div class="lienzo">
+      <div class="cab"><img src="img/monviu-logo.png" alt="Clínica Veterinària MónViu-Orriols"><small>Inicio · Servicios · Especialidades · Contacto</small></div>
+      <div class="hueco"><div style="width:70%"></div><div style="width:92%"></div><div style="width:84%"></div><div style="width:60%"></div><p>Aquí sigue el contenido actual de vuestra web, sin cambios.</p></div>
+      <div class="flot">
+        <div class="burbuja"><b>¿Pedimos cita para tu mascota?</b>Te contestamos al momento por WhatsApp.</div>
+        <a class="tel" href="#voz"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Habla con Laura</a>
+        <a class="wa" href="#whatsapp"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Escríbenos por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <p class="nota"><b>Simulación.</b> El menú y la cabecera imitan vuestra web solo para que veáis dónde irían los botones; el contenido real no se toca.</p>
+</div></section>
+
+<section class="cierre"><div class="wrap">
+  <div class="caja">
+    <div><p class="serif">¿Lo vemos con vosotros?</p><p style="margin-top:8px;color:var(--texto-2)">Un diagnóstico de 30 minutos, por videollamada o en la clínica. Escríbenos a contacto@altera-es.com o por WhatsApp.</p></div>
+    <a class="btn" href="https://wa.me/34624939023?text=Hola%2C%20soy%20de%20MónViu-Orriols%20y%20he%20visto%20la%20demo">Escribir por WhatsApp</a>
+  </div>
+</div></section>
+</main>
+
+<script>
+const G = {
+  cita: [
+    ['cli', 'Hola! Quería pedir cita para vacunar a mi gata'],
+    ['ia', '¡Hola! Te atiende el asistente virtual de MónViu-Orriols. ¿Cómo se llama tu gata y qué edad tiene?'],
+    ['cli', 'Luna, tiene 4 años. Se pone muy nerviosa en el veterinario'],
+    ['ia', 'Es muy normal. La clínica es catfriendly: la atienden con calma y sin contenciones agresivas. Si viene en transportín, mejor tapado con una toalla.'],
+    ['ia', '¿Prefieres mañana o tarde, y qué día te viene bien?'],
+    ['cli', 'Miércoles por la tarde'],
+    ['ia', 'Anotado: vacuna de Luna, miércoles por la tarde. La clínica te confirma la hora por aquí. Trae su cartilla, por favor.'],
+    ['sis', 'Cita propuesta en el panel · pendiente de confirmar']
+  ],
+  recordatorio: [
+    ['sis', 'Recordatorio preparado por el asistente · aprobado por la clínica'],
+    ['ia', 'Hola, Lucía. Te escribimos de MónViu-Orriols: según la ficha de Simba, le toca la desparasitación este mes. ¿Quieres que te propongamos un día para pasar por la clínica?'],
+    ['cli', 'Sí, el jueves por la mañana puedo'],
+    ['ia', 'Genial. Dejo propuesto el jueves por la mañana. El equipo te confirma la hora en un rato.'],
+    ['sis', 'Cita propuesta en el panel · pendiente de confirmar']
+  ],
+  duda: [
+    ['cli', 'Mi gata no come desde ayer, ¿le doy algo?'],
+    ['ia', 'Siento que esté así. No puedo recomendarte medicamentos ni pautas: eso lo tiene que valorar el veterinario.'],
+    ['ia', 'Si además vomita, está muy decaída o no orina, es mejor que la vean hoy. Te busco cita lo antes posible. ¿Cómo se llama y prefieres mañana o tarde?'],
+    ['cli', 'Se llama Nala. Por la tarde'],
+    ['ia', 'Anotado: Nala, hoy por la tarde. Aviso ahora al equipo para que te llamen con la primera hora libre.'],
+    ['alerta', 'Aviso a la clínica · consulta prioritaria']
+  ],
+  urgencia: [
+    ['cli', 'Mi perro se ha comido una tableta de chocolate entera!!'],
+    ['ia', 'Eso puede ser serio. Ahora la clínica está cerrada: para urgencias trabaja con un centro colaborador, el Hospital Veterinario de la UCV. Te paso su teléfono y cómo llegar.'],
+    ['ia', 'Si puedes, dime tu nombre y el de tu perro: dejo aviso a la clínica ahora mismo.'],
+    ['cli', 'Andrés, el perro es Coco'],
+    ['ia', 'Gracias, Andrés. Aviso hecho. Ve ya al centro de urgencias, por favor.'],
+    ['alerta', 'Aviso urgente enviado al móvil de la clínica']
+  ],
+  domicilio: [
+    ['cli', 'Buenas, ¿me podéis traer un saco del pienso de mi perro? Vivo en Torrefiel'],
+    ['ia', '¡Claro! La clínica reparte pienso y productos bajo pedido por Orriols, Rascanya, Torrefiel y Sant Llorenç. ¿Qué pienso y qué tamaño de saco es?'],
+    ['cli', 'El mismo de la última vez, el grande. Y si podéis recoger a Coco para su revisión, mejor'],
+    ['ia', 'Anotado: pienso de Coco, saco grande, y recogida a domicilio para la revisión. La clínica te llama para concretar el día y la hora.'],
+    ['sis', 'Pedido y recogida en el panel · pendiente de confirmar']
+  ],
+  etologia: [
+    ['cli', 'Mi perro tira muchísimo de la correa y ladra a otros perros. ¿Hacéis algo de eso?'],
+    ['ia', 'Sí: la clínica tiene consulta de etología y comportamiento, con educación en positivo y sin castigos.'],
+    ['ia', 'En la primera visita el veterinario conoce a tu perro y os da un plan. ¿Cómo se llama y qué edad tiene?'],
+    ['cli', 'Thor, tiene un año y medio'],
+    ['ia', 'Gracias. Dejo propuesta una consulta de comportamiento para Thor. La clínica te escribe para cerrar el día.'],
+    ['sis', 'Cita propuesta en el panel · pendiente de confirmar']
+  ]
+};
+const box = document.getElementById('msgs');
+let token = 0;
+async function play(e) {
+  const my = ++token; box.innerHTML = '';
+  const rapido = new URLSearchParams(location.search).has('rapido');
+  for (const [q, t] of G[e]) {
+    if (my !== token) return;
+    if (q === 'ia' && !rapido) { const w = document.createElement('div'); w.className = 'escribe'; w.textContent = 'escribiendo…'; box.appendChild(w); await new Promise(r => setTimeout(r, 900)); w.remove(); }
+    if (my !== token) return;
+    const d = document.createElement('div'); d.className = 'm ' + q; d.textContent = t; box.appendChild(d); box.scrollTop = box.scrollHeight;
+    if (!rapido) await new Promise(r => setTimeout(r, 650));
+  }
+}
+document.querySelectorAll('.esc').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.esc').forEach(x => x.setAttribute('aria-pressed', x === b)); play(b.dataset.e);
+}));
+play('cita');
+</script>
+</body>
+</html>
