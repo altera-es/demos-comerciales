@@ -14,7 +14,9 @@ window.ALTERA_CONFIG = {
     motos: 'agent_5901m4xmm6kcfh5rr9j8dny6zdr9',       // Laura · Motor Gas Bike (creado 14/10/2026)
     realestate: 'agent_9301m4xmmam3f7v95wwmf658vwg5',  // Laura · Izon Consulting (creado 14/10/2026)
     bakra: 'agent_5901m4y2ztqqeszs6324z7vnv2hm',       // Laura · Bakra Nails Salon (creado 14/10/2026)
-    ecologic: 'agent_7401m5cvrk2geg28sz0af4qwy5q8'     // Eco · Ecologic Car Wash (creado 20/10/2026)
+    ecologic: 'agent_7401m5cvrk2geg28sz0af4qwy5q8',    // Eco · Ecologic Car Wash (creado 20/10/2026)
+    veterinaria: 'agent_4401m7jzcr7we12vct2a0tcpkjtc', // Laura · Clínica Veterinaria Pascual, clínica ficticia (creado 16/11/2026)
+    monviu: 'agent_2101m7k37cbve0h9046jyxxhq0gx'        // Laura · MónViu-Orriols, demo para prospecto real (creado 16/11/2026)
   },
   oferta: {
     costeCliente: '600 €',       // tras la subvención del 80% (Bono Crecimiento Pyme JCCM)
